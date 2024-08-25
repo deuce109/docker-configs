@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  skyrimserver:
+    container_name: skyrimserver
+    image: tiltedphoques/st-reborn-server:latest
+    ports:
+     - "10578:10578/udp"
+    volumes:
+     - ./skyrimserver/config:/home/server/config
+     - ./skyrimserver/logs:/home/server/logs
+     - "$SKYRIM_DATA_PATH:/home/server/Data"
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+    labels:
+      CONNECTION_PORT: "10578"
+      SERVER_NAME: Skyrim Together
+      SERVER_TYPE: "Skyrim Together"

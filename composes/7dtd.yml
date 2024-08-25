@@ -1,0 +1,31 @@
+services:
+  7dtdserver:
+    image: vinanrra/7dtd-server
+    container_name: 7dtdserver-exp
+    environment:
+      - VERSION=$7DTD_VERSION # Change between 7 days to die versions
+      - PUID=1000 # Remember to use same as your user
+      - PGID=1000 # Remember to use same as your user
+      - TimeZone=NorthAmericaEast # Optional - Change Timezone
+      - TEST_ALERT=NO # Optional - Send a test alert
+      - BACKUP=NO # Optional - Backup server at 5 AM
+      - MONITOR=NO # Optional - Keeps server up if crash
+      - START_MODE=3
+    volumes:
+      - "$7DTD_ROOT_DATA_PATH:/home/sdtdserver/.local/share/7DaysToDie/"
+      - "$7DTD_ROOT_DATA_PATH/LGSM-Config:/home/sdtdserver/lgsm/config-lgsm/sdtdserver"
+      - "$7DTD_ROOT_DATA_PATH/ServerFiles:/home/sdtdserver/serverfiles/" # Optional - serverfiles folder
+      - "$7DTD_ROOT_DATA_PATH/log:/home/sdtdserver/log/" # Optional - Logs folder
+      - "$7DTD_ROOT_DATA_PATH/backups:/home/sdtdserver/lgsm/backup/" # Optional - If BAKCUP=NO, backups folder
+    ports:
+      - 26900:26900/tcp # Default game ports
+      - 26900:26900/udp # Default game ports
+      - 26901:26901/udp # Default game ports
+      - 26902:26902/udp # Default game ports
+      - 8080:8080/tcp
+      - 8081:8081/tcp
+    labels:
+      SERVER_NAME: $7DTD_SERVER_NAME
+      SERVER_TYPE: $7DTD_SERVER_TYPE
+      CONNECTION_PORT: 26900
+    restart: unless-stopped

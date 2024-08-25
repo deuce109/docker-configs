@@ -1,0 +1,11 @@
+services:
+  factorio:
+    container_name: factorio
+    image: factoriotools/factorio:stable
+    volumes:
+    - ./factorio:/factorio
+    environment:
+      - GENERATE_NEW_SAVE=true
+      - SAVE_NAME=$FACTORIO_SAVE_NAME
+    ports:
+      - 34197:34197/udp

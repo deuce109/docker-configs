@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  terraria:
+    container_name: terraria
+    image: ghcr.io/beardedio/terraria:latest
+    ports:
+      - '7777:7777'
+    restart: unless-stopped
+    volumes:
+      - $TERARRIA_CONFIG_PATH:/config
+    tty: true
+    stdin_open: true
+    labels:
+      CONNECTION_PORT: "7777"
+      SERVER_NAME: Terarria
+      SERVER_TYPE: Terarria

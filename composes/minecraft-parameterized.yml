@@ -1,0 +1,33 @@
+services:
+  minecraft:
+    image: itzg/minecraft-server
+
+    container_name: minecraft-1.21
+  
+    environment:
+      - TYPE=$MINECRAFT_SERVER_TYPE
+      - VERSION=$MINECRAFT_SERVER_VERSION
+      - MAX_MEMORY=$MINECRAFT_SERVER_MAX_MEMORY
+      - ENABLE_ROLLING_LOGS=true
+      - USE_AIKAR_FLAGS=true
+      - EULA=false  # For the server to actually start make this true
+      - ENABLE_COMMAND_BLOCKS=true
+
+    tty: true
+    stdin_open: true
+
+    ports:
+      - 25565:25565
+      - 19132:19132/tcp
+      - 19132:19132/udp
+
+    restart: unless-stopped
+
+    volumes: 
+      - ./data:/data
+      - ./mods:/mods
+
+    labels:
+      SERVER_NAME: $MINECRAFT_SERVER_NAME
+      SERVER_TYPE: $MINECRAFT_SERVER_TYPE
+      CONNECTION_PORT: 25565
