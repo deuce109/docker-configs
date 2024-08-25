@@ -15,6 +15,6 @@ services:
     tty: true
 
     labels:
-      CONNECTION_PORT: "10578"
+      CONNECTION_PORT: 10578
       SERVER_NAME: Skyrim Together
-      SERVER_TYPE: "Skyrim Together"
+      SERVER_TYPE: Skyrim Together

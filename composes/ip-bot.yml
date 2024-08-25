@@ -1,0 +1,17 @@
+services:
+  ip-bot:
+    container_name: ip-bot
+    image: ip-bot:test
+    build:
+      dockerfile: $PWD/dockerfiles/ip-bot.dockerfile
+      context: $BUILD_CONTEXT
+    volumes:
+    - //var/run/docker.sock:/var/run/docker.sock:ro
+    - ./data:/app/data
+    restart: unless-stopped
+    secrets:
+      - discord-bot-token
+
+secrets:
+  discord-bot-token:
+    external: true

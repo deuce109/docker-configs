@@ -13,7 +13,7 @@ services:
     volumes:
     - ./config:/config
     - ./transcode:/transcode
-    - E:/Plex Files:/data
+    - $PLEX_DATA_PATH:/data
 
     ports:
     - "32400:32400/tcp"
