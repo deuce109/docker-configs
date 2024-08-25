@@ -1,7 +1,7 @@
 ## Composes
-    Most composes can be started by setting proper env vars and running `docker compose -f <path_to_compose_file> up`
-
-    Required env vars for different images listed below:
+Most composes can be started by setting proper env vars and running `docker compose -f <path_to_compose_file> up`
+    
+Required env vars for different images listed below:
 
 ### 7 Days to Die
     | Name | Description | Expected Value Type |
